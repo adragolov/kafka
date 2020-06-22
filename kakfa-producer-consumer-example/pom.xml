@@ -5,9 +5,35 @@
 	<groupId>com.gaurav.kafka</groupId>
 	<artifactId>kakfa-producer-consumer-example</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<build>
+		<defaultGoal>install</defaultGoal>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>8</source>
+					<target>8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 	<packaging>jar</packaging>
 
-	<name>kakfa-producer-consumer-example</name>
+	<name>kakfa-producer-consumer-exambple</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -27,6 +53,14 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.9.5</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.6.2</version>
+			<scope>test</scope>
 		</dependency>
 
 
