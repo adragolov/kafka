@@ -14,11 +14,24 @@ import com.gaurav.kafka.producer.ProducerCreator;
 
 public class App {
 	public static void main(String[] args) {
+
+		if (args != null && args.length > 0) {
+			if (args[0].equalsIgnoreCase("producer")) {
+				runProducer();
+			}
+			else {
+				runConsumer();
+			}
+		}
+		else {
+			runConsumer();
+		}
 //		runProducer();
-		runConsumer();
+//		runConsumer();
 	}
 
 	static void runConsumer() {
+		System.out.println("RUNNING KAFKA CONSUMER");
 		Consumer<Long, String> consumer = ConsumerCreator.createConsumer();
 
 		int noMessageToFetch = 0;
@@ -32,7 +45,6 @@ public class App {
 				else
 					continue;
 			}
-
 			consumerRecords.forEach(record -> {
 				System.out.println("Record Key " + record.key());
 				System.out.println("Record value " + record.value());
@@ -45,6 +57,7 @@ public class App {
 	}
 
 	static void runProducer() {
+		System.out.println("RUNNING KAFKA PRODUCER");
 		Producer<Long, String> producer = ProducerCreator.createProducer();
 
 		for (int index = 0; index < IKafkaConstants.MESSAGE_COUNT; index++) {
